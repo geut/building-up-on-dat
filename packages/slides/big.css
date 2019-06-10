@@ -1,0 +1,121 @@
+html {
+  height: 100%;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, avenir next, avenir, helvetica neue, helvetica, Ubuntu, roboto, noto, segoe ui, arial, sans-serif;
+  font-weight: 700;
+  margin: 0;
+  padding: 0;
+}
+
+h1,
+h2,
+h3,
+p {
+  margin: 0;
+}
+
+em {
+  font-style: normal;
+}
+
+.nowrap {
+  white-space: nowrap;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+div.slide-container {
+  background-size: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+div.slide {
+  cursor: pointer;
+  cursor: hand;
+}
+
+div.imageText {
+  text-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+/* normally not good, but ok in context of full screen directional navigation */
+.talk-mode .slide:focus {
+  outline: 0;
+}
+
+body.talk-mode {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+body.print-mode {
+  background: #fff;
+  color: #000;
+  font-weight: normal;
+  padding: 0px;
+}
+
+body.print-mode div.sub-container {
+  padding: 10px 20px;
+  display: flex;
+  flex-flow: row wrap;
+  break-inside: avoid;
+}
+
+ul.notes-list {
+  display: inline-block;
+  float: left;
+  vertical-align: top;
+}
+
+body.print-mode div.slide-container {
+  border: 1px solid #000;
+}
+
+body.jump-mode {
+  padding: 10px;
+}
+
+body.jump-mode div.sub-container {
+  display: inline-block;
+  vertical-align: top;
+  padding: 2px;
+}
+
+body.jump-mode div.slide-container {
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  cursor: pointer;
+}
+
+body.jump-mode div.slide-container:hover {
+  border: 1px solid rgba(255, 255, 255, 0.8);
+}
+
+.layout {
+  display: grid;
+}
+
+.layout div {
+  display: flex;
+  align-items: center;
+}
+
+.layout img {
+  object-fit: contain;
+  width: 100%;
+  height: 100%;
+}
+
+div.slide > img:only-child,
+div.slide > canvas:only-child,
+div.slide > video:only-child {
+  width: 100%;
+}

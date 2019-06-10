@@ -1,0 +1,54 @@
+{
+  "name": "@geut/gpm",
+  "description": "A package manager built on top of Dat. For fun.",
+  "version": "0.0.0",
+  "author": "GEUT",
+  "bin": {
+    "gpm": "./bin/run"
+  },
+  "bugs": "https://github.com/geut/gpm/issues",
+  "dependencies": {
+    "@oclif/command": "^1.5.14",
+    "@oclif/config": "^1.13.0",
+    "@oclif/plugin-help": "^2.2.0",
+    "dat-node": "^3.5.15",
+    "express": "^4.17.1",
+    "node-fetch": "^2.6.0",
+    "npm-packlist": "^1.4.1",
+    "tar": "^4.4.10"
+  },
+  "devDependencies": {
+    "@oclif/dev-cli": "^1.22.0",
+    "globby": "^8.0.2"
+  },
+  "engines": {
+    "node": ">=8.0.0"
+  },
+  "files": [
+    "/bin",
+    "/npm-shrinkwrap.json",
+    "/oclif.manifest.json",
+    "/src"
+  ],
+  "homepage": "https://github.com/geut/gpm",
+  "keywords": [
+    "oclif"
+  ],
+  "license": "MIT",
+  "main": "src/index.js",
+  "oclif": {
+    "commands": "./src/commands",
+    "bin": "gpm",
+    "plugins": [
+      "@oclif/plugin-help"
+    ]
+  },
+  "repository": "geut/gpm",
+  "scripts": {
+    "postpack": "rm -f oclif.manifest.json",
+    "prepack": "oclif-dev manifest && oclif-dev readme",
+    "test": "echo NO TESTS",
+    "version": "oclif-dev readme && git add README.md",
+    "registry": "node ./registry"
+  }
+}
