@@ -3,6 +3,7 @@ const Dat = require('dat-node')
 const fetch = require('node-fetch');
 const packlist = require('npm-packlist')
 const tar = require('tar')
+const FormData = require('form-data')
 const config = require('../config')
 
 class NewDep extends Command {
@@ -16,24 +17,26 @@ class NewDep extends Command {
     this.log('Validation package.json...')
     try {
       const files = await packlist({ path: args.package })
-      const tarFilesStream = await tar({
-        prefix: 'package/',
-        cwd: packageDir,
+      const tarFile = tar.create({
         gzip: true
       }, files)
-
       this.log('Uploading package...')
+      const form = FormData()
+      form.append('file', tarFile)
       // upload files to registry
-      const res = await fetch(`${config.endpoint.base}${config.endpoint.packages}`, {
+      const res = await fetch(`http://${config.endpoint.base}${config.endpoint.packages}`, {
         method: 'POST',
-        body: tarFilesStream,
-        headers: { 'Content-Type': 'application/json' }
+        body: form,
+        headers: {
+          ...form.getHeaders()
+        }
       })
-
-      if (res.status === 200){
+      console.log({res})
+      const jsonRes = await res.json()
+      if (jsonRes.status === 200){
         this.log('Package succesfully uploaded to the registry')
       } else {
-        this.warn(`Oops something happened. Received status: ${res.status}`)
+        this.warn(`Oops something happened. Received status: ${jsonRes.status}`)
       }
       this.exit()
     } catch (err) {
