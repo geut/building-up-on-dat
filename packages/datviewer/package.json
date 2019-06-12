@@ -6,7 +6,7 @@
     "@latticejs/tree": "^1.0.1-beta.0",
     "@material-ui/core": "^3.9.3",
     "@material-ui/icons": "^3.0.2",
-    "dat-js": "^8.0.1",
+    "dat-js": "^8.0.2",
     "hyperhealth": "^2.0.0",
     "pretty-bytes": "^5.2.0",
     "prop-types": "^15.7.2",
