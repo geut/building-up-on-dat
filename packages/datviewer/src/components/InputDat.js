@@ -1,18 +1,17 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import TextField from '@material-ui/core/TextField';
+import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import { withStyles } from '@material-ui/core/styles';
 
 const styles = theme => ({
   container: {
     display: 'flex',
-    flexWrap: 'wrap',
   },
   inputDat: {
     marginLeft: theme.spacing.unit,
     marginRight: theme.spacing.unit,
-    width: 200,
   },
   button: {
     margin: theme.spacing.unit,
@@ -44,24 +43,27 @@ class InputDat extends Component {
     const { classes } = this.props;
 
     return (
-      <form className={classes.container} noValidate autoComplete="off" onSubmit={this.loadDat}>
-        <TextField
-          id="standard-name"
-          label="dat-url"
-          className={classes.inputDat}
-          value={this.state.datInput}
-          onChange={this.handleChange}
-          margin="normal"
-        />
-        <Button
-          variant="contained"
-          color="primary"
-          className={classes.button}
-          onClick={this.loadDat}
-        >
-          Add
-        </Button>
-      </form>
+      <Grid item xs={12} md={6}>
+        <form className={classes.container} noValidate autoComplete="off" onSubmit={this.loadDat}>
+          <TextField
+            id="standard-name"
+            label="dat-url"
+            className={classes.inputDat}
+            value={this.state.datInput}
+            onChange={this.handleChange}
+            margin="normal"
+            fullWidth
+          />
+          <Button
+            variant="contained"
+            color="primary"
+            className={classes.button}
+            onClick={this.loadDat}
+          >
+            Add
+          </Button>
+        </form>
+      </Grid>
     )
   }
 }
