@@ -7,14 +7,13 @@ const { getKey } = require('../keys')
 const { registryId, gModulesDir } = require('../config')
 
 class Install extends Command {
-
   async run () {
     const { args } = this.parse(Install)
-		// TODO: check if !args.package, then we need to look for a package.json and install all deps
+    // TODO: check if !args.package, then we need to look for a package.json and install all deps
     const baseDir = `${this.config.home}/${gModulesDir}`
     this.log(`Downloading package ${args.package}...`)
-    this.log(`Using key: [${getKey(registryId).substr(0,6)}]`)
-    Dat(baseDir, {key: getKey(registryId), sparse: true}, (err, dat) => {
+    this.log(`Using key: [${getKey(registryId).substr(0, 6)}]`)
+    Dat(baseDir, { key: getKey(registryId), sparse: true }, (err, dat) => {
       if (err) return this.error(err)
 
       const network = dat.joinNetwork()
@@ -48,7 +47,6 @@ class Install extends Command {
             )
           }
         })
-
       })
     })
   }
