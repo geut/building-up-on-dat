@@ -30,7 +30,8 @@ class DatContent extends Component {
   state = {
     datContent: [],
     parentsData: {},
-    archive: undefined
+    archive: undefined,
+    loadingDat: false
   };
 
   datContentLoader = async (dat) => {
@@ -83,7 +84,6 @@ class DatContent extends Component {
   }
 
   showFileInfo = ({ item }) => {
-    console.log('daaa item', item)
     return (
       <div key={`fileInfo__${item.label}`}>
         {item.size ? <Chip label={prettyBytes(item.size)} /> : ''}
@@ -92,29 +92,36 @@ class DatContent extends Component {
     )
   }
 
+  loadingDatUpdate = (lookingForDat) => {
+    this.setState({
+      loadingDat: lookingForDat
+    })
+  }
+
   render () {
-    const { datContent, archive, swarm } = this.state;
+    const { datContent, archive, swarm, loadingDat } = this.state;
     const { classes } = this.props;
-    console.log({swarm})
     return (
       <div>
-        <InputDat datLinkHandler={this.datContentLoader}/>
-        <Typography variant="h3" gutterBottom={true}>
-          Content
-        </Typography>
+        <InputDat datLinkHandler={this.datContentLoader} onUpdate={this.loadingDatUpdate}/>
 
-        {archive && !archive.content ?
+        {loadingDat ?
           <CircularProgress className={classes.progress} size={80}/>
           : ''
         }
 
         {datContent.length ?
-          <Tree
-            treeData={datContent}
-            showChecks={false}
-            onUnfoldItem={this.retrieveChildrenContent}
-            secondaryActions={[this.showFileInfo]}
-          />
+          <>
+            <Typography variant="h3" gutterBottom={true}>
+              Content
+            </Typography>
+            <Tree
+              treeData={datContent}
+              showChecks={false}
+              onUnfoldItem={this.retrieveChildrenContent}
+              secondaryActions={[this.showFileInfo]}
+            />
+          </>
           : ''
         }
 
