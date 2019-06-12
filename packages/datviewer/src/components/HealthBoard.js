@@ -73,26 +73,14 @@ class HealthBoard extends Component {
       hubsState: [],
       discoveryState: []
     }
-    this.hyperh = Hyperhealth(props.archive, props.options);
+    this.hyperh = Hyperhealth(props.archive);
   }
 
   componentDidMount () {
-    const { swarm , options, archive } = this.props;
+    const { options, archive } = this.props;
     var intervalId = setInterval(this.check, options.checkInterval);
     // store intervalId in the state so it can be accessed later:
     this.setState({intervalId: intervalId});
-
-    swarm.dss.on('connection', (connection, info) => {
-      // get info about swarm connection
-      console.log('discoverySwarmStatus:connection', connection);
-      console.log('discoverySwarmStatus:info', info)
-      this.setState({
-        discoverySwarmStatus: {
-          connection,
-          info
-        }
-      })
-    })
 
     // listen to websocket swarm events
     /*
@@ -148,12 +136,14 @@ class HealthBoard extends Component {
   check = () => {
     const { swarm } = this.props;
     const update = this.hyperh.get();
+    console.log({update})
     const hubsState = eachWSState(swarm.hub.sockets);
-    // const discoveryState = eachWSState([swarm.dss.connection.socket]);
+    const discoveryState = eachWSState([swarm.dss.connection.socket]);
 
     this.setState({
       health: update,
       hubsState,
+      discoveryState
     });
   }
 
@@ -269,7 +259,7 @@ class HealthBoard extends Component {
                         className={classes.progress}
                         color="secondary"
                         variant="determinate"
-                        value={(p.have/p.length)*100}
+                        value={(p.have/(p.length - 1))*100}
                       />
                     </Tooltip>
                   ))
