@@ -33,8 +33,8 @@ const styles = theme => ({
   }
 });
 
-const getHubsState = (hubs) => {
-  return hubs.map(getWSState);
+const eachWSState = (ws) => {
+  return ws.map(getWSState);
 }
 
 const getWSState = (ws) => {
@@ -71,8 +71,7 @@ class HealthBoard extends Component {
       intervalId: undefined,
       health: {},
       hubsState: [],
-      discoverySwarm: {},
-      discoveryState: {}
+      discoveryState: []
     }
     this.hyperh = Hyperhealth(props.archive, props.options);
   }
@@ -149,8 +148,8 @@ class HealthBoard extends Component {
   check = () => {
     const { swarm } = this.props;
     const update = this.hyperh.get();
-    const hubsState = getHubsState(swarm.hub.sockets);
-    // const discoveryState = getWSState(swarm.dss.connection.socket);
+    const hubsState = eachWSState(swarm.hub.sockets);
+    // const discoveryState = eachWSState([swarm.dss.connection.socket]);
 
     this.setState({
       health: update,
@@ -159,7 +158,7 @@ class HealthBoard extends Component {
   }
 
   render() {
-    const { classes, archive, swarm } = this.props;
+    const { classes, archive } = this.props;
     const { health, hubsState, discoveryState } = this.state;
     return (
       <div className={classes.root}>
@@ -192,14 +191,16 @@ class HealthBoard extends Component {
               <Typography color="secondary" variant="h5" component="h3">
                 Discovery Status
               </Typography>
-              <Typography component="p" className={classes[discoveryState.label]} noWrap={true} gutterBottom={true}>
-                {discoveryState.label}
-                <Tooltip title={discoveryState.url}>
-                  <IconButton size="small" aria-label="external link">
-                    <LinkIcon />
-                  </IconButton>
-                </Tooltip>
-              </Typography>
+              {discoveryState.map((item, i) => (
+                <Typography key={`discovery_${i}`} component="p" className={classes[item.label]} noWrap={true} gutterBottom={true}>
+                  {item.label}
+                  <Tooltip title={item.url}>
+                    <IconButton size="small" aria-label="external link">
+                      <LinkIcon />
+                    </IconButton>
+                  </Tooltip>
+                </Typography>
+              ))}
             </Paper>
           </Grid>
           <Grid item xs>
@@ -207,8 +208,8 @@ class HealthBoard extends Component {
               <Typography color="secondary" variant="h5" component="h3">
                 Hubs Status
               </Typography>
-              {hubsState.map(item => (
-                <Typography component="p" className={classes[item.label]} noWrap={true} gutterBottom={true}>
+              {hubsState.map((item, i) => (
+                <Typography key={`hubs_${i}`} component="p" className={classes[item.label]} noWrap={true} gutterBottom={true}>
                   {item.label}
                   <Tooltip title={item.url}>
                     <IconButton size="small" aria-label="external link">
@@ -258,7 +259,7 @@ class HealthBoard extends Component {
           {health && health.peers ?
             <Grid item xs={12}>
               <Paper className={classes.paper} elevation={1}>
-                <Typography color='secondary' color='secondary' variant="h5" component="h3">
+                <Typography color='secondary' variant="h5" component="h3">
                   Peers Downloads
                 </Typography>
                 {
