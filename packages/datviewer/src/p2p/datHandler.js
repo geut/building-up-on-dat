@@ -1,6 +1,6 @@
 import Dat from 'dat-js';
 
-const dat = new Dat({ sparseMetadata: false });
+const dat = new Dat({ sparse: true });
 
 const defaultState = () => ({
   parents: []
@@ -10,10 +10,9 @@ function getArchive (url, opts={}) {
   console.log('getArchive')
   return new Promise((resolve, reject) => {
     const archive = dat.get(url, opts)
-    archive.ready(() => {
+    archive.on('content', () => {
       resolve({ archive, swarm: dat.swarm })
     })
-    archive.once('getArchive::error', console.log)
   })
 }
 
@@ -109,11 +108,13 @@ async function getChildrens (explorerState, archive, item) {
 async function loadDat (options={}) {
   console.log('dat handler options', options)
   const alreadyLoaded = dat.has(options.dat)
-  const { archive, swarm } = await getArchive(options.dat)
   console.log('alreadyLoaded', alreadyLoaded)
   try {
+  const { archive, swarm } = await getArchive(options.dat)
+    console.log({archive})
+    const content = await renderContentBasic(archive, options.path || '/')
     return {
-      content: await renderContentBasic(archive, options.path || '/'),
+      content,
       archive,
       swarm
     }
