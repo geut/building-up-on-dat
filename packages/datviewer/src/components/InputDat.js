@@ -31,17 +31,20 @@ class InputDat extends Component {
   }
 
   loadDat = async (e) => {
-    const { datLinkHandler } = this.props;
+    const { datLinkHandler, onUpdate } = this.props;
     const { value } = this.state;
+    // TODO: parse value as valid dat link
     if (!value) return; // show error log
+    onUpdate(true);
     await datLinkHandler({ dat: this.state.value });
+    onUpdate(false);
   }
 
   render () {
     const { classes } = this.props;
 
     return (
-      <form className={classes.container} noValidate autoComplete="off">
+      <form className={classes.container} noValidate autoComplete="off" onSubmit={this.loadDat}>
         <TextField
           id="standard-name"
           label="dat-url"
