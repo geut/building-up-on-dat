@@ -1,6 +1,6 @@
 import Dat from 'dat-js';
 
-const dat = new Dat({ sparse: true });
+const dat = new Dat({ sparseMetadata: false });
 
 const defaultState = () => ({
   parents: []
