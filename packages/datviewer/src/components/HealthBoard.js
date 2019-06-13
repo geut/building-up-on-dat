@@ -71,16 +71,21 @@ class HealthBoard extends Component {
       intervalId: undefined,
       health: {},
       hubsState: [],
-      discoveryState: []
+      discoveryState: [],
+      hyperh: {}
     }
-    this.hyperh = Hyperhealth(props.archive);
   }
 
   componentDidMount () {
     const { options, archive } = this.props;
     var intervalId = setInterval(this.check, options.checkInterval);
+    console.log('Creating new hyperh using archive', archive)
+    const hyperh = Hyperhealth(archive);
     // store intervalId in the state so it can be accessed later:
-    this.setState({intervalId: intervalId});
+    this.setState({
+      intervalId,
+      hyperh
+    });
 
     // listen to websocket swarm events
     /*
@@ -133,10 +138,24 @@ class HealthBoard extends Component {
     clearInterval(this.state.intervalId);
   }
 
+  componentDidUpdate (prevProps) {
+    const { archive, options } = this.props;
+    if (prevProps.archive.key !== archive.key) {
+      // Update the hyperhealth with a new archive
+      const hyperh = Hyperhealth(archive);
+      clearInterval(this.state.intervalId);
+      const intervalId = setInterval(this.check, options.checkInterval);
+      this.setState({
+        intervalId,
+        hyperh
+      })
+    }
+  }
+
   check = () => {
     const { swarm } = this.props;
-    const update = this.hyperh.get();
-    console.log({update})
+    const { hyperh } =  this.state;
+    const update = hyperh.get();
     const hubsState = eachWSState(swarm.hub.sockets);
     const discoveryState = eachWSState([swarm.dss.connection.socket]);
 
