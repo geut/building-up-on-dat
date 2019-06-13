@@ -8,14 +8,21 @@ const defaultState = () => ({
 
 function getArchive (url, opts={}) {
   return new Promise((resolve, reject) => {
-    const archive = dat.get(url, opts)
-    if (archive.content) {
-      resolve({ archive, swarm: dat.swarm })
-    } else {
-      archive.on('content', () => {
-        resolve({ archive, swarm: dat.swarm })
-      })
-    }
+    url = url.replace(/\/$/, '')
+    const hd = dat.get(url, opts)
+    hd.ready(() => {
+      console.log({ key: hd.key })
+      if (hd.content) {
+        resolve({ archive: hd, swarm: dat.swarm })
+      } else {
+        hd.on('syncing', () => {console.log('syncing content...')})
+        hd.on('content', () => {
+          const archive = dat.archives.find(h => h.key.toString('hex') === url || h.url === url)
+          console.log({archive})
+          resolve({ archive, swarm: dat.swarm })
+        })
+      }
+    })
   })
 }
 
@@ -109,12 +116,10 @@ async function getChildrens (explorerState, archive, item) {
 }
 
 async function loadDat (options={}) {
-  console.log('dat handler options', options)
   const alreadyLoaded = dat.has(options.dat)
   console.log('alreadyLoaded', alreadyLoaded)
   try {
-  const { archive, swarm } = await getArchive(options.dat)
-    console.log({archive})
+    const { archive, swarm } = await getArchive(options.dat)
     const content = await renderContentBasic(archive, options.path || '/')
     return {
       content,
@@ -127,7 +132,10 @@ async function loadDat (options={}) {
   }
 }
 
+const archives = dat.archives
+
 export default {
   loadDat,
-  getChildrens
+  getChildrens,
+  archives
 }
