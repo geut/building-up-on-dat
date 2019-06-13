@@ -7,12 +7,15 @@ const defaultState = () => ({
 })
 
 function getArchive (url, opts={}) {
-  console.log('getArchive')
   return new Promise((resolve, reject) => {
     const archive = dat.get(url, opts)
-    archive.on('content', () => {
+    if (archive.content) {
       resolve({ archive, swarm: dat.swarm })
-    })
+    } else {
+      archive.on('content', () => {
+        resolve({ archive, swarm: dat.swarm })
+      })
+    }
   })
 }
 
