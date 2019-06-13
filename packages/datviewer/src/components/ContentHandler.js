@@ -36,7 +36,6 @@ class DatContent extends Component {
 
   datContentLoader = async (dat) => {
     const { content, archive, swarm } = await this.props.datHandler.loadDat(dat);
-    console.log({content})
     this.setState({
       datContent: content,
       archive,
@@ -73,10 +72,8 @@ class DatContent extends Component {
       item
     );
     const copy = this.state.datContent.slice();
-    console.log({result})
     this.updateTreeWithChildren(copy, result, item);
 
-    console.log({copy})
     this.setState({
       datContent:copy,
       parentsData: updateParents
@@ -93,8 +90,15 @@ class DatContent extends Component {
   }
 
   loadingDatUpdate = (lookingForDat) => {
+    const datContent = lookingForDat ? [] : this.state.datContent
+    const parentsData = lookingForDat ? {} : this.state.parentsData
+    const archive = lookingForDat ? undefined : this.state.archive
+
     this.setState({
-      loadingDat: lookingForDat
+      loadingDat: lookingForDat,
+      datContent,
+      parentsData,
+      archive
     })
   }
 
@@ -125,7 +129,7 @@ class DatContent extends Component {
           : ''
         }
 
-        {archive && archive.content ? <HealthBoard archive={archive} swarm={swarm}/> : ''}
+        {archive ? <HealthBoard archive={archive} swarm={swarm}/> : ''}
       </div>
     )
   }
