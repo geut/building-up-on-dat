@@ -1,54 +1,41 @@
-const { createReadStream, mkdirSync } = require('fs')
+const { mkdirSync } = require('fs')
+const { Readable } = require('stream')
+const { connect } = require('net')
 const { pipeline } = require('stream')
-const { Command } = require('@oclif/command')
-const Dat = require('dat-node')
-const tar = require('tar')
-const { getKey } = require('../keys')
-const { registryId, gModulesDir } = require('../config')
+const { Command, flags } = require('@oclif/command')
+const { extract } = require('tar-fs')
+const znode = require('znode')
+const { port } = require('../config')
+
+const createReadStreamFromBuffer = (buffer) => {
+  const stream = new Readable()
+  stream.push(buffer)
+  stream.push(null)
+  return stream
+}
 
 class Install extends Command {
   async run () {
-    const { args } = this.parse(Install)
+    const { args, flags } = this.parse(Install)
     // TODO: check if !args.package, then we need to look for a package.json and install all deps
-    const baseDir = `${this.config.home}/${gModulesDir}`
-    this.log(`Downloading package ${args.package}...`)
-    this.log(`Using key: [${getKey(registryId).substr(0, 6)}]`)
-    Dat(baseDir, { key: getKey(registryId), sparse: true }, (err, dat) => {
-      if (err) return this.error(err)
-
-      const network = dat.joinNetwork()
-      network.on('connection', (info) => {
-        this.log('connected to a peer')
-      })
-
-      dat.archive.ready(() => {
-        // Manually download files via the hyperdrive API:
-        dat.archive.readFile(`/${args.package}/1.0.0/${args.package}.tar`, (err, content) => {
-          if (err) {
-            if (err.notFound) {
-              this.log(`${args.package} not found`)
-            } else {
-              this.error(err)
-            }
-          } else {
-            // move file to pwd/node_modules and untar it
-            mkdirSync('./node_modules')
-            mkdirSync(`./node_modules/${args.package}`)
-            pipeline(
-              createReadStream(`${baseDir}/${args.package}/1.0.0/${args.package}.tar`),
-              tar.x({
-                C: `./node_modules/${args.package}`
-              }),
-              (err) => {
-                if (err) return this.error(err)
-                this.log(`${args.package} downloaded succesfully`)
-                process.exit(0)
-              }
-            )
-          }
-        })
-      })
-    })
+    const socket = connect(port)
+    try {
+      const remote = await znode(socket)
+      this.log(`gpm::downloading package ${args.package}...`)
+      const tarBuffer = await remote.install({ packageName: args.package, version: flags.version })
+      mkdirSync(`./node_modules/${args.package}`, { recursive: true })
+      pipeline(
+        createReadStreamFromBuffer(tarBuffer),
+        extract(`./node_modules/${args.package}`),
+        (err) => {
+          if (err) return this.error(err)
+          this.log(`gpm::${args.package} installed succesfully`)
+          process.exit(0)
+        }
+      )
+    } catch (err) {
+      this.error(err)
+    }
   }
 }
 
@@ -58,6 +45,14 @@ Install.args = [
     description: 'Download selected <package> from the dat based registry'
   }
 ]
+
+Install.flags = {
+  version: flags.string({
+    char: 'v',
+    description: 'Specific version to retrieve from the dat based registry',
+    default: '1.0.0'
+  })
+}
 
 Install.description = 'Fetch a package from the dat based registry'
 
