@@ -5,5 +5,6 @@ module.exports = {
     packages: '/packages'
   },
   registryId: 'localDat',
-  gModulesDir: '.gpm'
+  gModulesDir: '.gpm',
+  port: '9998'
 }
