@@ -10,7 +10,7 @@ function getKey (registryId = activeRegistry) {
 
 function setKey (registryId, key) {
   if (!registryId) {
-    throw new Error('mising argument: registryId')
+    throw new Error('gpm::mising argument: registryId')
   }
   keys[registryId] = key
 }
