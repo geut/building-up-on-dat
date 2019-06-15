@@ -4,7 +4,7 @@ const multer = require('multer')
 const tar = require('tar-fs')
 const tempy = require('tempy')
 const path = require('path')
-const { readFile } = require('fs')
+const { readFile, createWriteStream, mkdirSync } = require('fs')
 const { pipeline } = require('stream')
 const { promisify } = require('util')
 
@@ -57,11 +57,14 @@ function startServer ({ dat }) {
 
         await promisify(pipeline)(req, tar.extract(tmp))
 
-        const packageJSON = JSON.parse(await promisify(readFile)(path.join(tmp, 'package.json')))
+        const { name, version } = JSON.parse(await promisify(readFile)(path.join(tmp, 'package.json')))
 
-        const pathToExtract = path.join('.', 'registry', 'modules', packageJSON.name, packageJSON.version)
+        const dirTo = path.join('.', 'registry', 'modules', name, version)
+        const fullDestination = path.join(dirTo, `${name}.tar`)
 
-        await promisify(pipeline)(tar.pack(tmp), tar.extract(pathToExtract))
+        mkdirSync(dirTo, { recursive: true })
+
+        await promisify(pipeline)(tar.pack(tmp), createWriteStream(fullDestination))
 
         res.json({ status: 200, msg: 'Package received OK' })
       } catch (err) {
