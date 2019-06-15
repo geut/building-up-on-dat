@@ -17,7 +17,8 @@
     "node-fetch": "^2.6.0",
     "npm-packlist": "^1.4.1",
     "tar-fs": "^2.0.0",
-    "tempy": "^0.3.0"
+    "tempy": "^0.3.0",
+    "znode": "^1.1.3"
   },
   "devDependencies": {
     "@oclif/dev-cli": "^1.22.0",
