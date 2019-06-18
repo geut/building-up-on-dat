@@ -12,8 +12,13 @@ class NewDep extends Command {
     // - run npm-packlist
     // - upload the tar (post against our registry super peer)
     const { args } = this.parse(NewDep)
+
     this.log('gpm::validating package.json...')
+
     try {
+      const registryId = args.registryId
+      const registry = config.get(`registries.${registryId}`)
+
       const files = await packlist({ path: args.package })
 
       const tarFile = tar.pack(null, {
@@ -22,7 +27,7 @@ class NewDep extends Command {
 
       this.log('gpm::uploading package...')
       // upload files to registry
-      const res = await fetch(`http://${config.endpoint.base}${config.endpoint.packages}`, {
+      const res = await fetch(`http://${registry.http}${registry.packages || '/packages'}`, {
         method: 'POST',
         body: tarFile
       })
@@ -49,6 +54,11 @@ NewDep.args = [
     name: 'package',
     description: 'Path to the new dependencys package.json file.',
     default: '.'
+  },
+  {
+    name: 'registryId',
+    description: 'Registry to use in gpm.',
+    default: config.get('defaultRegistryId')
   }
 ]
 

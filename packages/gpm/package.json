@@ -9,8 +9,9 @@
   "bugs": "https://github.com/geut/gpm/issues",
   "dependencies": {
     "@oclif/command": "^1.5.14",
-    "@oclif/config": "^1.13.0",
     "@oclif/plugin-help": "^2.2.0",
+    "conf": "^4.1.0",
+    "conf-cli": "^0.1.9",
     "dat-node": "^3.5.15",
     "express": "^4.17.1",
     "multer": "^1.4.1",

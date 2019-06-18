@@ -1,10 +1,17 @@
-// TODO: have a way to modify these valus from the outside
-module.exports = {
-  endpoint: {
-    base: 'localhost:8080',
-    packages: '/packages'
+const Conf = require('conf')
+
+const defaults = {
+  registries: {
+    geut: {
+      http: 'localhost:8080',
+      dat: ''
+    }
   },
-  registryId: 'localDat',
-  gModulesDir: '.gpm',
+  defaultRegistryId: 'geut',
+  modulesDir: '.gpm',
   port: '9998'
 }
+
+const config = new Conf({ defaults, configName: 'config', projectName: 'gpm', projectSuffix: '' })
+
+module.exports = config

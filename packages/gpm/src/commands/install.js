@@ -5,7 +5,7 @@ const { pipeline } = require('stream')
 const { Command, flags } = require('@oclif/command')
 const { extract } = require('tar-fs')
 const znode = require('znode')
-const { port } = require('../config')
+const config = require('../config')
 
 const createReadStreamFromBuffer = (buffer) => {
   const stream = new Readable()
@@ -18,7 +18,7 @@ class Install extends Command {
   async run () {
     const { args, flags } = this.parse(Install)
     // TODO: check if !args.package, then we need to look for a package.json and install all deps
-    const socket = connect(port)
+    const socket = connect(config.get('port'))
     try {
       const remote = await znode(socket)
       this.log(`gpm::downloading package ${args.package}...`)
