@@ -28,7 +28,7 @@ class Daemon extends Command {
     const registryId = args.registryId
     const registry = config.get(`registries.${registryId}`)
     const modulesDir = config.get('modulesDir')
-    const baseDir = `${this.config.home}/${modulesDir}`
+    const baseDir = `${this.config.home}/${modulesDir}/${registry.dat}`
 
     this.log('gpm::starting daemon command...')
     this.log(`gpm::using key: [${registry.dat.substr(0, 6)}]`)
