@@ -2,8 +2,7 @@ const { createServer } = require('net')
 const { Command } = require('@oclif/command')
 const Dat = require('dat-node')
 const znode = require('znode')
-const { getKey } = require('../keys')
-const { registryId, gModulesDir, port } = require('../config')
+const config = require('../config')
 
 const DATRPC = (dat) => ({
   ping: () => 'pong',
@@ -25,10 +24,16 @@ const DATRPC = (dat) => ({
 class Daemon extends Command {
   async run () {
     const { args } = this.parse(Daemon)
-    const baseDir = `${this.config.home}/${gModulesDir}`
+
+    const registryId = args.registryId
+    const registry = config.get(`registries.${registryId}`)
+    const modulesDir = config.get('modulesDir')
+    const baseDir = `${this.config.home}/${modulesDir}/${registry.dat}`
+
     this.log('gpm::starting daemon command...')
-    this.log(`gpm::using key: [${getKey(registryId).substr(0, 6)}]`)
-    Dat(baseDir, { key: getKey(registryId), sparse: true }, (err, dat) => {
+    this.log(`gpm::using key: [${registry.dat.substr(0, 6)}]`)
+
+    Dat(baseDir, { key: registry.dat, sparse: true }, (err, dat) => {
       if (err) return this.error(err)
 
       const network = dat.joinNetwork()
@@ -62,7 +67,12 @@ Daemon.args = [
   {
     name: 'port',
     description: 'Starts the dat-rpc daemon on the selected port.',
-    default: port
+    default: config.get('port')
+  },
+  {
+    name: 'registryId',
+    description: 'Registry to use in gpm.',
+    default: config.get('defaultRegistryId')
   }
 ]
 

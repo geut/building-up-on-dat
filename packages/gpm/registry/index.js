@@ -3,7 +3,7 @@ const Dat = require('dat-node')
 const multer = require('multer')
 const tar = require('tar-fs')
 const tempy = require('tempy')
-const path = require('path')
+const { join } = require('path')
 const { readFile, createWriteStream, mkdirSync } = require('fs')
 const { pipeline } = require('stream')
 const { promisify } = require('util')
@@ -21,26 +21,28 @@ const upload = multer({ storage: multerStorage }).any()
 const app = express()
 
 // 1. Load the modules registry
-Dat('./registry/modules', function (err, dat) {
-  if (err) throw err
+function startRegistry (directory) {
+  Dat(directory, function (err, dat) {
+    if (err) throw err
 
-  // 2. Import the files
-  const importer = dat.importFiles('./registry/modules', { watch: true, ignoreDirs: false })
+    // 2. Import the files
+    const importer = dat.importFiles(directory, { watch: true, ignoreDirs: false })
 
-  importer.on('error', console.log)
-  importer.on('put-end', function (src, dest) {
-    console.log('Added package', dest.name)
+    importer.on('error', console.log)
+    importer.on('put-end', function (src, dest) {
+      console.log('Added package', dest.name)
+    })
+    console.log('dat.live', dat.live)
+    // 3. Share the files on the network!
+    dat.joinNetwork()
+    // (And share the link)
+    console.log('Registry Dat link is: dat://' + dat.key.toString('hex'))
+
+    startServer({ directory, dat })
   })
-  console.log('dat.live', dat.live)
-  // 3. Share the files on the network!
-  dat.joinNetwork()
-  // (And share the link)
-  console.log('Registry Dat link is: dat://' + dat.key.toString('hex'))
+}
 
-  startServer({ dat })
-})
-
-function startServer ({ dat }) {
+function startServer ({ directory, dat }) {
   console.log('Starting registry endpoint')
 
   app.get('/key', function (req, res) {
@@ -57,10 +59,10 @@ function startServer ({ dat }) {
 
         await promisify(pipeline)(req, tar.extract(tmp))
 
-        const { name, version } = JSON.parse(await promisify(readFile)(path.join(tmp, 'package.json')))
+        const { name, version } = JSON.parse(await promisify(readFile)(join(tmp, 'package.json')))
 
-        const dirTo = path.join('.', 'registry', 'modules', name, version)
-        const fullDestination = path.join(dirTo, `${name}.tar`)
+        const dirTo = join(directory, name, version)
+        const fullDestination = join(dirTo, `${name}.tar`)
 
         mkdirSync(dirTo, { recursive: true })
 
@@ -74,3 +76,5 @@ function startServer ({ dat }) {
 
   app.listen(8080)
 }
+
+module.exports = startRegistry
