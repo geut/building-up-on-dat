@@ -3,14 +3,496 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
-  <title>Big</title>
+  <title>Building Up on Dat</title>
   <link href="big.css" rel="stylesheet" type="text/css" />
+  <link href="themes/light.css" rel="stylesheet" type="text/css" />
+  <script>BIG_ASPECT_RATIO=1.77;</script>
   <script src="big.js"></script>
+  <link rel="preload" href='images/google-down.png' as="image"/>
+  <link rel="preload" href='images/socialmedia-down.png' as="image"/>
+  <link rel="preload" href='images/ig-down.png' as="image"/>
+  <link rel="preload" href='images/deka-climbing.jpg' as="image"/>
+  <link rel="preload" href='images/deka-climbing-safe.jpg' as="image"/>
+  <link rel="preload" href='images/deka-climbing-unsafe.jpg' as="image"/>
+  <link rel="preload" href="images/cube-geut-3.png" as="image"/>
+  <link rel="preload" href="images/cube-geut-3-clear.png" as="image"/>
+  <link rel="preload" href="images/title.png" as="image"/>
+  <link rel="preload" href="images/cube-geut-1.png" as="image"/>
+  <link rel="preload" href="images/feed.png" as="image"/>
+  <link rel="preload" href="images/cube-geut-4.png" as="image"/>
+  <link rel="preload" href="images/cube-geut-5.png" as="image"/>
+
 </head>
 <body class="light">
+  <div data-body-style="background-color: white; background-image: url(https://colombia.nodeconf.com/static/12fc0c2192df73ab763c2d0366e97c75/017b4/logo.png); background-repeat: no-repeat; background-position:center">
+    <notes>
+    Hola Colombia! Es un gusto estar aca, voy a comenzar rapidamente mostrandoles algunas noticias recientes. Para invitarlos a reflexionar.
+    </notes>
+  </div>
+  <div data-body-style="background-color: white; background-image: url(images/google-down.png); background-repeat: no-repeat; background-size: contain; background-position: center">
+  </div>
+  <div data-body-style="background-color: white; background-image: url(images/ig-down.png); background-repeat: no-repeat; background-size: contain">
+  </div>
+  <div data-body-style="background-color: white; background-image: url(images/socialmedia-down.png); background-repeat: no-repeat; background-size: contain">
+  </div>
+  <div data-body-style="background-color:#FF4136; color: #FFFFFF">
+    Service is down
+    <notes>
+    Creo que todos algunas vez nos vimos afectados por una de estas fallas en algun momento.
+    </notes>
+  </div>
+  <div data-body-style="background-color: white; background-image: url(images/amazon-centralization.png); background-repeat: no-repeat; background-size: contain; background-position:center">
+  </div>
+  <div data-body-style="background-color:#FF4136; color: #FFFFFF">
+    Tragedy of the commons
+    <small style="font-size: 20%;">
+      <a href="https://www.youtube.com/watch?v=bE1LAxYazbY" target="_blank">🎥</a>
+    </small>
+    <notes>
+    - ver link: https://es.wikipedia.org/wiki/Tragedia_de_los_comunes
+    La tragedia de los comunes se refiere a una vieja teoria que desgraciadamente sigue estando en uso digamos. Que implicitamente se usa para justificar el quitarle control de un bien comun, como el amazonas, a la gente, a sus pobladores nativos a sus comunidades, para entregaserlo a un privado.
+    Elinor Ostrom, ganadora del nobel en economia en 2009 critico esta teoria. Demostrando todo lo contrario.
+    </notes>
+  </div>
+  <div class='layout' style='grid-template-columns:60% 40%;'>
+    <img src='images/deka-climbing.jpg'/>
+    <div>real life</div>
+    <notes>
+      Pero no necesitamos ser tan tragicos tampoco. Por ejemplo, un hobie que me fascina es escalar. Comence hace poco y es una actividad que quiero seguir practicando por mucho tiempo. Estas en contacto con la naturaleza, es genial pero tambien puede ser peligroso. Mortalmente peligroso.
+      Por suerte, hay muchos mecanismos de seguridad y nos ensenan a usarlos desde el primer momento.
+    </notes>
+  </div>
+  <div class='layout' style='grid-template-columns:60% 40%;'>
+    <img src='images/deka-climbing-safe.jpg'/>
+    <div>real life</div>
+    <notes>
+    Siempre hay redundancia (concepto q estamos familiarizados) en los mecanismos de seguridad. Cada una de las flechas en este caso senala un punto de anclaje, esto quiere decir que si me caigo quedo colgando del ultimo punto. Una pequeña caida y puedo seguir, nada grave.
+    </notes>
+  </div>
+  <div class='layout' style='grid-template-columns:60% 30%;'>
+    <img src='images/deka-climbing-unsafe.jpg'/>
+    <div>real life ☠️</div>
+    <notes>
+    Pero que sucede si uso solo un punto de anclaje. Esto incrementa el riesgo. Ahora si me caigo todo depende de un solo seguro y si ese seguro falla, puede ser el final.
+    Esto parece un single point of failure...
+    </notes>
+  </div>
+  <div data-body-style="background-color:#FF4136; color: #FFFFFF">
+    <div>CENTRALIZATION ISSUES</div>
+    <notes>
+    Todos estos ejemplos tienen un factor comun, centralizacion como un problema. Caidas de servicios, malas administraciones, fallos de privacidad, caida total del sistema.
+    Ahora bien, que podemos hacer nosotros programadores para cambiar esto? Porque sepan que tenemos un rol en todo esto. Al menos desde el punto de vista tecnologico.
+    Si tan solo hubiera otra manera de hacer las cosas...
+    </notes>
+  </div>
+  <div class="geut-navy" data-body-style="background-color: white; background-image: url(images/title.png); background-repeat: no-repeat; background-size: contain;background-position:bottom right;">
+    <span class="nowrap">Building Up</span>
+    <br />
+    on Dat
+    <notes>
+    Bienvenidos a "Building Up on Dat."
+    Vamos a ver como Dat nos puede ayudar a desarrollar nuevos tipos de aplicaciones decentralizadas.
+    v1 - Jun 2019 - NodeConf Colombia
+    </notes>
+  </div>
+  <div class='layout' style='grid-template-rows:60% 25% 10% 5%;'>
+    <img alt='GEUT logo' src='images/geut_logo_150_dpi.png'/>
+    <div class='geut-purple' style='margin-left: auto;margin-right: auto;font-size:52px;'>
+      Diego 👋
+    </div>
+    <div style='margin-left: auto;margin-right: auto'>
+      <small>
+        aka: deka, dk, dɛkɑ
+      </small>
+    </div>
+    <div style='margin-left: auto;margin-right: auto'>
+      <a href="https://twitter.com/carax" target="_blank">@carax</a>
+      ♠︎
+      <a href="https://github.com/geut" target="_blank">GEUT</a>
+      ♣︎
+      <a href="https://twitter.com/LaPlataJS" target="_blank">@LaPlataJS</a>
+      ♦︎
+      <a href="https://github.com/dat-land/comm-comm" target="_blank">Dat Comm-Comm</a>
+    </div>
+    <notes>
+    GEUT is a young but solid company looking forward to create new apps that led us to new ways of interaction. We are doing some good work these days on the decentralized space.
+    </notes>
+  </div>
+
+  <div data-body-style="background-color: white; background-image: url(images/cube-geut-1.png); background-repeat: no-repeat; background-size: 30%;background-position:bottom right;">
+    Super quick intro to Dat
+    <notes>
+    So let's get into Dat, let's see super quickly what it is, the most important parts and some code examples. Finally we'll talk a bit about what's next?!
+
+    - Dat is a community-driven project
+    - Dat is also a powerful decentralized data sharing tool
+    </notes>
+  </div>
+
   <div>
-    Your presentation goes here
-    <notes>Speakers notes go here.</notes>
+    Dat is a <em class="nowrap">community-driven</em> project
+    <br />
+    <br />
+    <small>
+      <a href="https://twitter.com/okdistribute" target="_blank">@karissa</a>
+      *
+      <a href="https://twitter.com/mafintosh" target="_blank">@mafintosh</a>
+      *
+      <a href="https://twitter.com/joeahand" target="_blank">@joeahand</a>
+      *
+      <a href="https://twitter.com/RangerMauve" target="_blank">@rangermauve</a>
+      *
+      <a href="https://twitter.com/tinchoz49" target="_blank">@tinchoz49</a>
+      * ...
+    </small>
+    <notes>
+    Entonces Dat es un proyecto mantenido por la comunidad. Esto quiere decir que hay comites abiertos donde distintos desarrolladores que invierten tiempo en el proyecto colaboran y por supuesto tienen lugar en decidir el futuro del mismo. Es una organización abierta.
+    Community matters.
+    </notes>
+  </div>
+
+  <div>
+    Dat is also a powerful <em>decentralized data sharing tool</em>🛠
+    <notes>
+    Y para que usamos este proyecto tan bien organizado? Para desarrolar aplicaciones decentralizadas. Es decir aplicaciones donde el control regresa al usuario pero este no esta aislado sino que puede colaborar. Somos animales sociales.
+    </notes>
+  </div>
+
+  <div data-body-style="background-color: white; background-image: url(images/dat@2x.png); background-repeat: no-repeat; background-size: 80%;background-position:center;">
+    <notes>
+    Dat de un vistazo, estos son algunos de los componentes digamos importantes de los que quiero hablarles en esta charla.
+    Feeds y un sistema de replicación.
+    </notes>
+  </div>
+
+  <div data-body-style="background-color: white; background-image: url(images/dat-link.png); background-repeat: no-repeat; background-size: contain;background-position:center;">
+    <notes>
+    Y cómo compartimos información? A traves del dat link
+    </notes>
+  </div>
+
+  <div data-body-style="background-color: white; background-image: url(images/dat-link.png); background-repeat: no-repeat; background-size: contain;background-position:center;">
+    <small>Public Key 🔑</small>
+    <br />
+    <br />
+    <small>Discovery Key 🧭</small>
+    <notes>
+    Un dat link es una clave publica y una clave de descubrimiento.
+    con la clave publica vamos a poder leer y firmar el contenido, bueno esto ultimo solo el writer.
+    Con la discovery key, dat tiene una forma segura para buscar a otros peers que esten buscando el mismo contenido. Es una porcion de la public key.
+    </notes>
+  </div>
+
+  <div>
+    Let's go deeper
+  </div>
+
+  <div>
+    append-only log → <a href="https://github.com/mafintosh/hypercore" target="_blank">hypercore</a>
+
+    <notes>
+    Hypercore es el componente fundamental de Dat. Podriamos ubicarlo en lo mas profundo del core. Es una estructura de datos similar a una lista. Luego vamos a intercambiar esta lista con otros pares en el proceso de replicacion.
+    </notes>
+  </div>
+
+  <div data-body-style="background-color: white; background-image: url(images/feed.png); background-repeat: no-repeat; background-position:top right; background-size: 40%">
+    <span class="geut-green">a Feed</span>
+    <ul>
+      <li>simple data structure</li>
+      <li>immutable</li>
+      <li>logical order</li>
+      <li>easy to index → <em>efficient data sharing</em></li>
+    </ul>
+    <notes>
+    Otro nombre que le damos a esta lista, es feed. Lo van a ver por todos lados si se meten a mirar el codigo.
+    </notes>
+  </div>
+
+  <div>
+    <em>swarm</em>
+    <br />
+    network of peers with a common interest
+  </div>
+
+  <div data-body-style="background-color: white; background-image: url(images/cube-geut-4.png); background-repeat: no-repeat; background-position:top right; background-size: 30%">
+    Discovery
+  </div>
+  <div
+    class='layout'
+    style='grid-template-columns: 40% 40% 20%;grid-template-rows:repeat(2, 50%);'>
+    <div>
+      Local network
+    </div>
+    <img alt="local network super simple diagram" src="images/localNetwork.png"/>
+    <div>
+      mDNS
+    </div>
+    <div>
+      Internet
+    </div>
+    <img alt="simple diagram connecting multiple networks" src="images/internet.png"/>
+    <div>
+       DHTs
+    </div>
+    <notes>To be part of a swarm you will need some discovery mechanism</notes>
+  </div>
+
+  <div class='layout'
+    style='grid-template-columns: 40% 60%;grid-template-rows: 50% 50%;'>
+    <div>
+    <small>TCP/UTP</small> →
+    </div>
+    <div>
+      <a href="https://github.com/mafintosh/discovery-swarm" target="_blank">
+        discovery-swarm
+      </a>
+    </div>
+    <div><small >WebRTC/ws</small> →
+    </div>
+    <div>
+    <a href="https://github.com/RangerMauve/discovery-swarm-web" target="_blank">
+    discovery-swarm-web
+      </a>
+    </div>
+  </div>
+
+  <div data-body-style="background-image:url(images/cube-geut-3-clear.png); background-position:right 45px;background-repeat:no-repeat;background-size:40%">
+    Replication Process
+    <notes>
+      As we've seen in Dat like in Node, everything is about streams.
+      The replication process describes how to peers will share their feeds. Streams are a powerful interface for sharing almost anything. By the use of streams, dat is capable of syncronizing others feeds peers.
+    </notes>
+  </div>
+
+  <div data-body-style='padding:0;margin:0'>
+    <img alt="code snippet showing a replication between two peers" src="images/replicate.svg"/>
+    <notes>
+    The process of replication looks like this. I mean, you will see this or somethin similar almost everywhere in the Dat ecosystem, its like a pattern.
+    </notes>
+  </div>
+
+  <div data-body-style="background-image:url(images/cube-geut-3.png); background-position:right 45px bottom;background-repeat:no-repeat;background-size:contain">
+    Fundamental Blocks
+  </div>
+
+  <div>
+    <a href="https://github.com/mafintosh/hyperdrive" target="_blank">hyperdrive</a>
+  </div>
+
+  <div>
+    FS abstraction for Dat 👍
+    <notes>hyperdrive makes things super easier to work with by giving us a notion of working with a FS</notes>
+  </div>
+
+  <div data-body-style="background-image:url(images/hyperdrive.svg); background-position:center;background-repeat:no-repeat;background-size:contain">
+  </div>
+
+  <div>
+    2 feeds
+    <notes>
+    Recuerdan el concepto de feed de hypercore? En dat compartimos usualmente 2 feeds. Esto estructura como compartimos el contenido.
+    </notes>
+  </div>
+
+  <div>
+    metadata feed
+    <br />
+    <em><small>eg: names, sizes, pointers to content</small></em>
+    <notes>
+      Un feed de metadata, que incluso podemos descargar bajo demanda.
+    </notes>
+  </div>
+  <div>
+     content feed
+     <br />
+     <em><small>actual file contents</small></em>
+     <notes>
+     Y otro feed con el contenido actual. Esto es por ej, distinto a git. Donde metadata y contenido estan juntas, esto fue una decision de diseno que le dio muchos beneficios a dat.
+     </notes>
+  </div>
+
+  <div>
+    <a href="https://github.com/datproject/dat-js" target="_blank">dat-js</a>
+    <notes></notes>
+  </div>
+
+  <div>
+    <em>Dat API for the browser.</em>
+    <br />
+    <small>Handles swarm connection and storage</small>
+  </div>
+
+  <div>
+<pre>Input: dat link
+Output: hyperdrive</pre>
+  </div>
+
+  <div>
+    <em>v8</em> improvements:
+    <ul>
+      <li>webrtc + ws gateway → <a href="https://github.com/RangerMauve/discovery-swarm-web" target="_blank">discovery-swarm-web</a></li>
+      <li>loading non-browser dats ✔️</li>
+      <li>fast storage → <a href="https://github.com/random-access-storage/random-access-web" target="_blank">random-access-web</a></li>
+      <li>See more <a href="dat://07fbbfac111898371ea8bf87054bdc730b41bdd8705fed5e76a1ab1bda4b087a" target="_blank">here</a></li>
+    </ul>
+  </div>
+
+  <div>
+    Demo: <a href="https://datviewer.hashbase.io/" target="_blank" class="nowrap">dat-viewer</a>
+    <br/>
+    <a href="https://github.com/geut/building-up-on-dat/tree/master/packages/datviewer" target="_blank"><small class="geut-navy">code</small></a>
+  </div>
+
+  <div>
+    <a href="https://github.com/datproject/dat-node" class="nowrap" target="_blank">dat-node</a>
+  </div>
+
+  <div>
+    dat-cli, <span class="nowrap">dat-desktop</span>
+  </div>
+
+  <div>
+    <ul>
+      <li>swarm connection → <em>discovery-swarm</em></li>
+      <li>storage → <em>dat-storage</em></li>
+      <li>returns <em>hyperdrive</em></li>
+      <notes>similar to dat-js</notes>
+    </ul>
+  </div>
+
+  <div>
+    Demo: <em>gpm</em>
+    <br />
+    <a href="https://github.com/geut/building-up-on-dat/tree/master/packages/gpm" target="_blank">
+      <small class="geut-navy">code</small>
+    </a>
+  </div>
+  <div data-body-style="background-image:url(images/gpm.jpg); background-repeat:no-repeat;background-size:contain;background-position:center">
+  </div>
+
+  <div>
+    Multiwriter Demo:
+    <a href="https://caracara.hashbase.io/#/" target="_blank">Caracara</a>
+    <small>
+    hyperdb + automerge
+    <br />
+    <a href="https://github.com/geut/caracara#article" target="_blank">Read more</a>
+    </small>
+  </div>
+
+  <div class='layout' style='grid-template-rows:75% 25%;' data-body-style="background-image:url(images/cube-geut-6.png); background-position:right 45px top;background-repeat:no-repeat;background-size:30%">
+    <div>
+      <em>Local-first Apps</em>
+    </div>
+    <div>
+      <small>* <a href="https://www.inkandswitch.com/local-first.html" target="_blank">ink & switch</a> coined the term</small>
+    </div>
+    <notes>
+    - ink and switch coined the term here:
+    </notes>
+  </div>
+  <div>
+    <quote>software that enables both <em>collaboration and ownership</em> for users<quote>
+  </div>
+  <div>
+    2 types of apps
+  </div>
+  <div>
+    Old fashioned apps 🥃
+  </div>
+  <div>
+    Cloud apps ☁️
+    <br />
+    <br />
+  </div>
+  <div>
+    <em>7 principles</em>
+    <ul>
+      <li>
+        No spinners
+      </li>
+      <li>
+        Cross-device sync
+        <notes>Your data won't live on a single device</notes>
+      </li>
+      <li>
+        Network is optional
+        <notes>No internet required. Also we can make use of local networks (ie: mdns, bt)</notes>
+      </li>
+      <li>
+        Seamless collaboration
+        <notes>Excellent collaboration mechanisms is a must to have. Real-time. </notes>
+      </li>
+      <li>
+        The long now
+        <notes>Data preservation through the years, ie: you can continue accessing the data for a long time in the future</notes>
+      </li>
+      <li>
+        Security and privacy by default
+        <notes>Make use of local encryption + end-to-end encryption</notes>
+      </li>
+      <li>
+        You retain ultimate control
+        <notes>eg: being physically able to copy some data from one place to another</notes>
+      </li>
+    </ul>
+  </div>
+  <div data-body-style="background-image:url(images/cube-geut-5.png); background-repeat:no-repeat;background-size:40%;background-position:bottom right">
+    What's next?
+  </div>
+  <div>
+    <ul>
+      <li>Dat-SDK 🤖</li>
+      <li>hyperdrive v10 🗄</li>
+      <li>multiwriter support 🖋</li>
+      <li>Beaker: <a href=://unwalled.garden/" target="_blank">unwalled garden 🌳</a></li>
+    </ul>
+  </div>
+  <div data-body-style="background-color: white; background-image: url(images/dat-sdk.png); background-repeat: no-repeat; background-size: contain; background-position:center">
+  </div>
+  <div>
+    <em class="nowrap">So far...</em>
+  </div>
+  <div>
+    <span class="red">Centralization Issues</span>
+    <ul>
+      <li>Single point of failure</li>
+      <li>Losing control of data ownership</li>
+      <li>Lack of Privacy</li>
+    </ul>
+  </div>
+  <div>
+    <em>Dat achievements</em>
+    <ul>
+      <li>Solid progress</li>
+      <li>Local-first apps</li>
+      <li>Genuine interest on a better DX → <span class="geut-green">better ecosystem</span></li>
+      <li>Exciting times ✨</li>
+    </ul>
+  </div>
+  <div>
+    Conclusion
+    <notes>
+    Los ultimos años la tendencia fue llevar todo a la nube. Centralizamos. Y eso facilito muchas cosas pero tambien trajo problemas, algunos servicios de los que todos dependemos estan en crisis, otros han violado nuestra privacidad. Todo esto ocurre en un ecosistema donde no sabemos como generar un modelo de crecimiento sustentable que satisfaga el open source y al mundo corporativo. Tenemos muchas dudas, pero con lo que vimos hoy al menos una certeza, con el modelo centralizado ya estamos encontrando limites. Tambien sabemos que hay otro mundo decentralizado, que esta ahi para explorarlo, que no conocemos sus limites, nunca le dimos una oportunidad y este parece ser un buen momento para hacerlo. La tecnologia esta avanzando y nosotros tenemos un papel. Qué camino vas a elegir?
+    </notes>
+  </div>
+  <div class="layout" data-body-style="display: grid;grid-template-columns: 50% 50%;grid-template-rows:60% 40%;">
+    <div class="geut-green a center" >GRACIAS</div>
+    <div class="b">
+      <small style="grid-row:1">
+        with ♥ from
+      </small>
+      <a style="grid-row:2;text-decoration: none;" href="https://geutstudio.com" target="_blank">
+        <img style="width: 38%" alt="geut logo cyberpunk style" src="images/geut-cyber.png"/>
+      </a>
+    </div>
+    <small style="display: block" class="c">
+      <a href='https://geut.github.io/dat-workshop' target='_blank'>want more?</a>
+    </small>
+  </div>
+  <div>
+    Follow @<em>dtn_conf</em>
+    😉
   </div>
 </body>
 </html>

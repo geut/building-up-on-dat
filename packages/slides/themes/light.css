@@ -4,6 +4,92 @@ body {
 }
 
 a {
-  color: #0889d1;
+  color: #4B91BC;
   text-decoration-skip: ink;
 }
+
+/*TODO: add GEUT colors*/
+
+pre {
+  margin:0;
+  padding:0.2em;
+  background:#111;
+  color:#aaa;
+  font-weight:normal;
+}
+
+pre em {
+  color:#FFDC00;
+  background: #111;
+}
+
+em {
+  color: #535B9B
+}
+
+small {
+  color: #1B3E72
+}
+
+.yellow {
+  color: #FFDC00
+}
+
+.bg-black {
+  background-color: #111
+}
+
+.white {
+  color: #fff
+}
+
+.geut-navy {
+  color: #1B3E72
+}
+
+.red {
+  color: #FF4136
+}
+
+.geut-purple {
+  color: #262C5E
+}
+
+.geut-green {
+  color: #57B66A
+}
+
+.bg-geut-green {
+  background-color: #57B66A
+}
+
+.bg-geut-navy {
+  background-color: #1B3E72
+}
+
+.center {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+.a {
+  grid-column: 1 / span 2;
+  padding: 100px 0;
+}
+
+.b {
+  grid-column: 1;
+  grid-row: 2;
+  display: grid !important;
+  font-size: 20%;
+}
+
+.c {
+  grid-column: 2;
+  grid-row: 2;
+  font-size: 20%;
+  text-align: right;
+}
+
+
