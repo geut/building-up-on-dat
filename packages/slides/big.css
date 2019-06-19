@@ -1,9 +1,14 @@
+@font-face {
+  font-family: "IBMPlexMono-Bold";
+  src: url("/fonts/IBMPlexMono-Bold.woff2") format('woff2');
+}
+
 html {
   height: 100%;
 }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, avenir next, avenir, helvetica neue, helvetica, Ubuntu, roboto, noto, segoe ui, arial, sans-serif;
+  font-family: IBMPlexMono-Bold, -apple-system, BlinkMacSystemFont, avenir next, avenir, helvetica neue, helvetica, Ubuntu, roboto, noto, segoe ui, arial, sans-serif;
   font-weight: 700;
   margin: 0;
   padding: 0;
