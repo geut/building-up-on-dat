@@ -8,6 +8,7 @@ A quick intro to get up and running with [Dat](https://dat.foundation/)
 
 - [Online]()
 - Clone the repo and run `npx serve`
+- Beaker: `dat://af206247d57b0cdba9bb54b17773d258dce4d6570b7e1c6982e7aadb6f920be2/`
 
 ## Video
 
