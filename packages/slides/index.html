@@ -50,7 +50,7 @@
     </small>
     <notes>
     - ver link: https://es.wikipedia.org/wiki/Tragedia_de_los_comunes
-    La tragedia de los comunes se refiere a una vieja teoria que desgraciadamente sigue estando en uso digamos. Que implicitamente se usa para justificar el quitarle control de un bien comun, como el amazonas, a la gente, a sus pobladores nativos a sus comunidades, para entregaserlo a un privado.
+    La tragedia de los bienes comunes se refiere a una vieja teoria que desgraciadamente sigue estando en uso digamos. Que implicitamente se usa para justificar el quitarle control de un bien comun, como el amazonas, a la gente, a sus pobladores nativos a sus comunidades, para entregaserlo a un privado.
     Elinor Ostrom, ganadora del nobel en economia en 2009 critico esta teoria. Demostrando todo lo contrario.
     </notes>
   </div>
@@ -80,8 +80,10 @@
   <div data-body-style="background-color:#FF4136; color: #FFFFFF">
     <div>CENTRALIZATION ISSUES</div>
     <notes>
-    Todos estos ejemplos tienen un factor comun, centralizacion como un problema. Caidas de servicios, malas administraciones, fallos de privacidad, caida total del sistema.
-    Ahora bien, que podemos hacer nosotros programadores para cambiar esto? Porque sepan que tenemos un rol en todo esto. Al menos desde el punto de vista tecnologico.
+    Todos estos ejemplos tienen un factor comun, centralizacion como un problema.
+
+    Ahora bien, que podemos hacer nosotros programadores para cambiar esto? Porque sepan que tenemos un rol en todo esto.
+
     Si tan solo hubiera otra manera de hacer las cosas...
     </notes>
   </div>
@@ -91,7 +93,7 @@
     on Dat
     <notes>
     Bienvenidos a "Building Up on Dat."
-    Vamos a ver como Dat nos puede ayudar a desarrollar nuevos tipos de aplicaciones decentralizadas.
+    En esta charla vamos a ver como Dat nos puede ayudar a desarrollar nuevos tipos de aplicaciones decentralizadas.
     v1 - Jun 2019 - NodeConf Colombia
     </notes>
   </div>
@@ -116,6 +118,9 @@
     </div>
     <notes>
     GEUT is a young but solid company looking forward to create new apps that led us to new ways of interaction. We are doing some good work these days on the decentralized space.
+    ---
+    Sobre el speaker, mi nombre es Diego, tambien me conocen como deka. Soy co-founder de GEUT, una empresa joven pero solida, donde estamos desarrollando nuevos tipos de aplicaciones que habiliten nuevas formas de interactuar. Por eso nos interesa el espacio P2P.
+    Otra cosa que puedo contarles sobre mi, es que en diciembre, intercambiando unos correos surgio la idea de armar un comm-comm para Dat. Esto es un espacio semanal donde podemos aumentar la conversación sobre todo el ecosistema de dat, nuevos modulos, nuevas ideas, todos bienvenidos a este espacio semanal
     </notes>
   </div>
 
@@ -126,6 +131,8 @@
 
     - Dat is a community-driven project
     - Dat is also a powerful decentralized data sharing tool
+    ---
+    Bueno, vamos a empezar a conocer Dat.
     </notes>
   </div>
 
@@ -146,7 +153,7 @@
       * ...
     </small>
     <notes>
-    Entonces Dat es un proyecto mantenido por la comunidad. Esto quiere decir que hay comites abiertos donde distintos desarrolladores que invierten tiempo en el proyecto colaboran y por supuesto tienen lugar en decidir el futuro del mismo. Es una organización abierta.
+    Dat es un proyecto impulsado por la comunidad. Esto quiere decir que hay comites abiertos donde distintos desarrolladores y desarrolladoras invierten tiempo en el proyecto colaboran y por supuesto tienen lugar en decidir el futuro del mismo. Es una organización abierta y eso es importante.
     Community matters.
     </notes>
   </div>
@@ -154,20 +161,21 @@
   <div>
     Dat is also a powerful <em>decentralized data sharing tool</em>🛠
     <notes>
-    Y para que usamos este proyecto tan bien organizado? Para desarrolar aplicaciones decentralizadas. Es decir aplicaciones donde el control regresa al usuario pero este no esta aislado sino que puede colaborar. Somos animales sociales.
+    Pero no es solo eso claro, Dat es una poderosa herramienta para compartir datos de forma decentralizada.
     </notes>
   </div>
 
   <div data-body-style="background-color: white; background-image: url(images/dat@2x.png); background-repeat: no-repeat; background-size: 80%;background-position:center;">
     <notes>
-    Dat de un vistazo, estos son algunos de los componentes digamos importantes de los que quiero hablarles en esta charla.
-    Feeds y un sistema de replicación.
+    Veamos Dat de un vistazo, estos son algunos de los componentes importantes de los que quiero hablarles en esta charla.
+    Todo empieza con Feeds y un sistema de replicación.
+    Pensemos en los feeds como una lista y en la replicacion como una sincronizacion
     </notes>
   </div>
 
   <div data-body-style="background-color: white; background-image: url(images/dat-link.png); background-repeat: no-repeat; background-size: contain;background-position:center;">
     <notes>
-    Y cómo compartimos información? A traves del dat link
+    Otro componente importante de Dat es el dat link. Es como una url pero con otras habilidades.
     </notes>
   </div>
 
@@ -178,8 +186,8 @@
     <small>Discovery Key 🧭</small>
     <notes>
     Un dat link es una clave publica y una clave de descubrimiento.
-    con la clave publica vamos a poder leer y firmar el contenido, bueno esto ultimo solo el writer.
-    Con la discovery key, dat tiene una forma segura para buscar a otros peers que esten buscando el mismo contenido. Es una porcion de la public key.
+    con la clave publica vamos a poder leer y firmar el contenido, bueno esto ultimo solo el writer. Dat nos brinda encriptación en el medio.
+    Con la discovery key, dat tiene una forma segura de buscar a otros peers que esten compartiendo el mismo contenido. Es una porcion de la public key.
     </notes>
   </div>
 
@@ -191,7 +199,7 @@
     append-only log → <a href="https://github.com/mafintosh/hypercore" target="_blank">hypercore</a>
 
     <notes>
-    Hypercore es el componente fundamental de Dat. Podriamos ubicarlo en lo mas profundo del core. Es una estructura de datos similar a una lista. Luego vamos a intercambiar esta lista con otros pares en el proceso de replicacion.
+    Recuerdan que venimos hablando de feeds, bueno Hypercore es el modulo que representa al feed. Y es un componente fundamental de Dat. Tiene las siguientes caracteristicas
     </notes>
   </div>
 
@@ -204,7 +212,7 @@
       <li>easy to index → <em>efficient data sharing</em></li>
     </ul>
     <notes>
-    Otro nombre que le damos a esta lista, es feed. Lo van a ver por todos lados si se meten a mirar el codigo.
+    A pesar de ser un modulo de bajo nivel, es simple de visualizar, podemos pensar en hypercore como un una lista o un log. Esta lista es inmutable y facil de indexar, esto permite que dat sea eficiente cuando mergea o detecta cambios en grandes volumenes de datos, puede resolverlo en tiempo logaritmico.
     </notes>
   </div>
 
@@ -212,10 +220,16 @@
     <em>swarm</em>
     <br />
     network of peers with a common interest
+    <notes>
+    Otro concepto importante es el swarm. Pensemos en un swarm como una red de pares conectados con un interes en comun.
+    </notes>
   </div>
 
   <div data-body-style="background-color: white; background-image: url(images/cube-geut-4.png); background-repeat: no-repeat; background-position:top right; background-size: 30%">
     Discovery
+    <notes>
+    Pero como me uno a un swarm? Bueno a traves de algun mecanismo de descubrimiento.
+    </notes>
   </div>
   <div
     class='layout'
@@ -234,7 +248,9 @@
     <div>
        DHTs
     </div>
-    <notes>To be part of a swarm you will need some discovery mechanism</notes>
+    <notes>
+      Dat funciona tant en redes locales usando multicaste para descubrir peers como en redes de gran escala como internet, usando dht lo mismo que usa bittorent.
+    </notes>
   </div>
 
   <div class='layout'
@@ -261,6 +277,9 @@
     <notes>
       As we've seen in Dat like in Node, everything is about streams.
       The replication process describes how to peers will share their feeds. Streams are a powerful interface for sharing almost anything. By the use of streams, dat is capable of syncronizing others feeds peers.
+      ---
+      Como sabemos en node, todo en algun momento termina en streams. El proceso de replicacion no es la excepcion. Cada feed es un stream, cuando la replicacion ocurre los datos se sincronizan entre los feeds.
+      Como se ve esto?
     </notes>
   </div>
 
@@ -268,29 +287,45 @@
     <img alt="code snippet showing a replication between two peers" src="images/replicate.svg"/>
     <notes>
     The process of replication looks like this. I mean, you will see this or somethin similar almost everywhere in the Dat ecosystem, its like a pattern.
+    ---
+    Asi, esto es casi un patron en el mundo de dat, si se ponen a mirar el codigo van a ver esto mas de una vez.
+    Me descargo el Feed remoto, q obtuvimos a traves de una PK, luego le agrego mis datos y finalmente lo vuelvo a enviar al remoto, terminando asi la sincronizacion.
     </notes>
   </div>
 
   <div data-body-style="background-image:url(images/cube-geut-3.png); background-position:right 45px bottom;background-repeat:no-repeat;background-size:contain">
     Fundamental Blocks
+    <notes>
+    Bien ahora que tenemos un panoramoa de como funciona dat, veamos cuales son los modules que podemos usar para construir nuestras aplicaciones decentralizadas.
+    </notes>
   </div>
 
   <div>
     <a href="https://github.com/mafintosh/hyperdrive" target="_blank">hyperdrive</a>
+    <notes>
+    El primero de estos modulos es hyperdrive.
+    </notes>
   </div>
 
   <div>
     FS abstraction for Dat 👍
-    <notes>hyperdrive makes things super easier to work with by giving us a notion of working with a FS</notes>
+    <notes>
+    hyperdrive makes things super easier to work with by giving us a notion of working with a FS
+    ___
+    Hyperdrive nos da algo clave, una abstraccion tipo FS de dat. Es decir, nos deja interactuar con dat como si usaramos cualquier FS.
+    </notes>
   </div>
 
   <div data-body-style="background-image:url(images/hyperdrive.svg); background-position:center;background-repeat:no-repeat;background-size:contain">
+  <notes>
+  La API es similar de node. Tenemos readfile, write, readStream. Algo con lo que podemos estar familiarizados.
+  </notes>
   </div>
 
   <div>
     2 feeds
     <notes>
-    Recuerdan el concepto de feed de hypercore? En dat compartimos usualmente 2 feeds. Esto estructura como compartimos el contenido.
+    Recuerdan el concepto de feed de hypercore? Bueno en dat compartimos usualmente 2 feeds.
     </notes>
   </div>
 
@@ -299,7 +334,7 @@
     <br />
     <em><small>eg: names, sizes, pointers to content</small></em>
     <notes>
-      Un feed de metadata, que incluso podemos descargar bajo demanda.
+      Un feed de metadata, con info como nombres, stats, sizes y punteros al contenido
     </notes>
   </div>
   <div>
@@ -307,24 +342,32 @@
      <br />
      <em><small>actual file contents</small></em>
      <notes>
-     Y otro feed con el contenido actual. Esto es por ej, distinto a git. Donde metadata y contenido estan juntas, esto fue una decision de diseno que le dio muchos beneficios a dat.
+     Y otro feed con el contenido. Esto es por ej, distinto a git. Donde metadata y contenido estan juntas. Esto nos permite descargar la metadata por separado y solo acceder al contenido que nos interesa sin bajar todo.
      </notes>
   </div>
 
   <div>
     <a href="https://github.com/datproject/dat-js" target="_blank">dat-js</a>
-    <notes></notes>
+    <notes>
+    Otro modulo importante es dat-js
+    </notes>
   </div>
 
   <div>
     <em>Dat API for the browser.</em>
     <br />
     <small>Handles swarm connection and storage</small>
+    <notes>
+    Podemos pensarlo como una API de Dat para el browser. Se encarga de manejar la conexion al swarm y el storage eficient en el sandbox del browser.
+    </notes>
   </div>
 
   <div>
 <pre>Input: dat link
 Output: hyperdrive</pre>
+    <notes>
+    Es muy simple de usar, le pasamos un dat link, sino genera uno. Y el resultado es un hyperdrive
+    </notes>
   </div>
 
   <div>
@@ -335,20 +378,33 @@ Output: hyperdrive</pre>
       <li>fast storage → <a href="https://github.com/random-access-storage/random-access-web" target="_blank">random-access-web</a></li>
       <li>See more <a href="dat://07fbbfac111898371ea8bf87054bdc730b41bdd8705fed5e76a1ab1bda4b087a" target="_blank">here</a></li>
     </ul>
+    <notes>
+    La ultima version de dat-js es la 8. Y trae muchas mejoras. No solo en velocidad sino tambien en como almacena la información, antes solo usaba indexdb y ahora admite storages como la chrome file api.
+    Tambien entre las mejoras se agrega un gateway que se conecta con un bridge websocket con nuestra app y esto posibilita conectarnos con dats fuera de la red webrtc.
+    </notes>
   </div>
 
   <div>
     Demo: <a href="https://datviewer.hashbase.io/" target="_blank" class="nowrap">dat-viewer</a>
     <br/>
     <a href="https://github.com/geut/building-up-on-dat/tree/master/packages/datviewer" target="_blank"><small class="geut-navy">code</small></a>
+    <notes>
+    Llego el momento del primer demo. Esta es una app que arme usando dat-js y react. Se llama datviewer y se ve asi. Podemos cargar un dat e inspeccionarlo, como les contaba antes, estamos usando solamente el metadata feed por lo tanto no descargamos nada.
+    </notes>
   </div>
 
   <div>
     <a href="https://github.com/datproject/dat-node" class="nowrap" target="_blank">dat-node</a>
+    <notes>
+    Dat-node! Bueno, la abstraccion de dat para node.
+    </notes>
   </div>
 
   <div>
     dat-cli, <span class="nowrap">dat-desktop</span>
+    <notes>
+    Algunas apps que lo usan son el dat cli y el dat desktop
+    </notes>
   </div>
 
   <div>
@@ -356,7 +412,9 @@ Output: hyperdrive</pre>
       <li>swarm connection → <em>discovery-swarm</em></li>
       <li>storage → <em>dat-storage</em></li>
       <li>returns <em>hyperdrive</em></li>
-      <notes>similar to dat-js</notes>
+      <notes>
+      Como pueden ver es muy similar a dat-js. Se encarga de la conexion al swarm, el almacenamiento de los dats y nos retorna un hyperdrive que podemos usar.
+      </notes>
     </ul>
   </div>
 
@@ -366,8 +424,22 @@ Output: hyperdrive</pre>
     <a href="https://github.com/geut/building-up-on-dat/tree/master/packages/gpm" target="_blank">
       <small class="geut-navy">code</small>
     </a>
+    <notes>
+    El 2do demo que les prepare, esta vez usando dat-node. Este demo fue muy divertido de hacer. La idea es hacer nuestro propio package manager, como npm, pero se llama gpm y usa dat. Obviamente esto es un juguete.
+    Como la demo involucra muchas partes, en geut armamos un video para verlo en accion. veamos. PLAY VIDEO. Pero uds pueden clonar el repo y usarlo.
+    1. creamos un registry en un directorio.
+    2. lanzamos un daemon, este daemon usa la pk del registry y podemos pensarlo como un super seed, es decir nos permite estar compartiendo nuestro directorio de modulos todo el tiempo.
+    3. Vamos a simular un publish, porque nuestro registro no tiene nada. Para eso, vamos a subir nuestro modulo, elegimos uno al azar, se llama left-pad capaz q lo conozcan :D. Bien, newdep es el comando para subirlo, boom. Esta arriba.
+    4. Ahora vamos a consumir este modulo desde otro proyecto, aca vemos que al correr el proyecto falta una dependencia, que es left pad, vamos a instalarlo. gpm install... GENIAL.
+    5. Por ahora nada nuevo... pero que pasa si se cae el registro...? No podemos instalar nada mas...El caos, el horror.
+    6. En este momento que tal si otro colega quiere seguir trabajando, en su proyecto tambien necesita left-pad, pero el registro esta caido... Sin embargo el install funciona. Porque estamos usando dat para descargar el modulo. EXCELENTE
+    </notes>
   </div>
+
   <div data-body-style="background-image:url(images/gpm.jpg); background-repeat:no-repeat;background-size:contain;background-position:center">
+  <notes>
+  Este grafico muestra un poco como esta armado gpm. cuando descargamos lo hacemos desde hyperdrive, este FS decentralizado. Y cuando subimos, usando una api rest. esto puede verse como un servicio centralizado y era la idea de la demo. Tambien es una limitante de dat, porque no tenemos Multiwriter por ahora en el core. Es decir que solo puede escribir en un dat el creador el resto escuchamos cambios.
+  </notes>
   </div>
 
   <div>
@@ -378,6 +450,10 @@ Output: hyperdrive</pre>
     <br />
     <a href="https://github.com/geut/caracara#article" target="_blank">Read more</a>
     </small>
+    <notes>
+    Pero es posible escribir aplicaciones multiwriter en dat HOY. Usando librerias como hyperdb o kappa. EN este caso tengo otra demo que usa hyperdb junto a automerge, automerge es un modulo que maneja CRDTs o estructuras de datos libres de conflictos, piensenlas como cuando tenemos que hacer un git merge pero no tienen que preguntarle a nadie como mezclar.
+    Esta demo que arme es un editor colaborativo y se llama caracara
+    </notes>
   </div>
 
   <div class='layout' style='grid-template-rows:75% 25%;' data-body-style="background-image:url(images/cube-geut-6.png); background-position:right 45px top;background-repeat:no-repeat;background-size:30%">
@@ -388,6 +464,8 @@ Output: hyperdrive</pre>
       <small>* <a href="https://www.inkandswitch.com/local-first.html" target="_blank">ink & switch</a> coined the term</small>
     </div>
     <notes>
+    Ok, con todo esto que aprendimos estamos en condiciones de crear un nuevo tipo de app, que se llaman local-first apps.
+    ink and switch acuno el termino y en el link pueden ver todo el research pero me gustaria resumirlo asi.
     - ink and switch coined the term here:
     </notes>
   </div>
@@ -396,14 +474,23 @@ Output: hyperdrive</pre>
   </div>
   <div>
     2 types of apps
+    <notes>
+    En contexto ellos describen 2 tipos de apps
+    </notes>
   </div>
   <div>
     Old fashioned apps 🥃
+    <notes>
+    old fashioned apps, como las que usabamos en los 90s, monitores grandes, teclados grandes, internet no era mainstream y los datos estaban todos en nuestros dispositivos.
+    </notes>
   </div>
   <div>
     Cloud apps ☁️
     <br />
     <br />
+    <notes>
+    Ahora en cambio usamos cloud apps o web apps, estas apps potencian la colaboracion, eso es genial pero sin internet muchas no veces no podemos acceder a nuestros datos.
+    </notes>
   </div>
   <div>
     <em>7 principles</em>
@@ -436,9 +523,17 @@ Output: hyperdrive</pre>
         <notes>eg: being physically able to copy some data from one place to another</notes>
       </li>
     </ul>
+
+    <notes>
+    Local-first apps busca obtener lo mejor de estos dos mundos, colaboración de primer nivel y devolver la posesion de los datos al usuario.
+    </notes>
   </div>
+
   <div data-body-style="background-image:url(images/cube-geut-5.png); background-repeat:no-repeat;background-size:40%;background-position:bottom right">
     What's next?
+    <notes>
+    Estamos llegando al final pero antes queria contarles que es lo que se viene en Dat.
+    </notes>
   </div>
   <div>
     <ul>
@@ -447,11 +542,22 @@ Output: hyperdrive</pre>
       <li>multiwriter support 🖋</li>
       <li>Beaker: <a href=://unwalled.garden/" target="_blank">unwalled garden 🌳</a></li>
     </ul>
+    <notes>
+    - Dat-SDK va a ser la nueva api de alto nivel para desarrollar apps dat. dat-js y dat-node van a seguir existiendo pero el soporte oficial va a pasar al sdk. En 1 mes -veremos la primer version del sdk y podremos empezar a probarlo.
+    - hyperdrive v10, vimos q hyperdrive es super importante la v10 posibilita el soporte a multiwriter y muchas mejoras de eficiencia.
+    - Beaker nos trae el unwalled garden una api para desarrollar apps sociales en el mundo p2p.
+    </notes>
   </div>
   <div data-body-style="background-color: white; background-image: url(images/dat-sdk.png); background-repeat: no-repeat; background-size: contain; background-position:center">
+  <notes>
+  Asi se ve la relacion entre los modulos que vimos en la charla y los nuevos.
+  </notes>
   </div>
   <div>
     <em class="nowrap">So far...</em>
+    <notes>
+    En resumen...
+    </notes>
   </div>
   <div>
     <span class="red">Centralization Issues</span>
@@ -460,6 +566,9 @@ Output: hyperdrive</pre>
       <li>Losing control of data ownership</li>
       <li>Lack of Privacy</li>
     </ul>
+    <notes>
+    Estamos encontrando estos problemas con mas frecuencia.
+    </notes>
   </div>
   <div>
     <em>Dat achievements</em>
@@ -469,6 +578,10 @@ Output: hyperdrive</pre>
       <li>Genuine interest on a better DX → <span class="geut-green">better ecosystem</span></li>
       <li>Exciting times ✨</li>
     </ul>
+    <notes>
+    Por otra parte, dat es un proyecto con un crecimiento solido impulsado por la comunidad. Hay un interes genuino en mejorar la dx, esto va a posibilitar un mejor ecosistema de apps.
+    Creo que son tiempos mas que interesantes para sumarse al proyecto Dat.
+    </notes>
   </div>
   <div>
     Conclusion
