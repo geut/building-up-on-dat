@@ -8,13 +8,14 @@ A package manager built on top of Dat. For fun. THIS IS JUST A DEMO/TOY PROJECT.
 [![Downloads/week](https://img.shields.io/npm/dw/gpm.svg)](https://npmjs.org/package/gpm)
 [![License](https://img.shields.io/npm/l/gpm.svg)](https://github.com/geut/gpm/blob/master/package.json)
 
+![gpm components](gpm.jpg)
+
 <!-- toc -->
 * [Usage](#usage)
 * [Commands](#commands)
 <!-- tocstop -->
 # Usage
 <!-- usage -->
-
 There are 2 things that you should do before start using gpm as your funny package manager.
 
 First is to run your own registry, so, on one machine you should run
