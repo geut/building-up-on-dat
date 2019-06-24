@@ -4,11 +4,9 @@ gpm
 A package manager built on top of Dat. For fun. THIS IS JUST A DEMO/TOY PROJECT. 🧸
 
 [![oclif](https://img.shields.io/badge/cli-oclif-brightgreen.svg)](https://oclif.io)
-[![Version](https://img.shields.io/npm/v/gpm.svg)](https://npmjs.org/package/gpm)
-[![Downloads/week](https://img.shields.io/npm/dw/gpm.svg)](https://npmjs.org/package/gpm)
 [![License](https://img.shields.io/npm/l/gpm.svg)](https://github.com/geut/gpm/blob/master/package.json)
 
-![gpm components](gpm.jpg)
+![gpm components](gpm.png)
 
 <!-- toc -->
 * [Usage](#usage)
