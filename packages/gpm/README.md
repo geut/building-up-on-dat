@@ -8,6 +8,11 @@ A package manager built on top of Dat. For fun. THIS IS JUST A DEMO/TOY PROJECT.
 
 ![gpm components](gpm.png)
 
+___
+## See it in action
+
+[![gpm in action](http://cdn-b-east.streamable.com/image/l52ba.jpg?token=AF5Jt1hR3UiGccrtyf_JVA&expires=1565312280)](https://streamable.com/l52ba)
+
 <!-- toc -->
 * [Usage](#usage)
 * [Commands](#commands)
